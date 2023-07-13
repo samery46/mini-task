@@ -35,6 +35,7 @@
                                     <td>{!! $blog->content !!}</td>
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('blog.destroy', $blog->id) }}" method="POST">
+                                            <a href="{{ route('blog.show', $blog->id) }}" class="btn btn-sm btn-dark">SHOW</a>
                                             <a href="{{ route('blog.edit', $blog->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                             @csrf
                                             @method('DELETE')

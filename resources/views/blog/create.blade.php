@@ -56,6 +56,7 @@
 
                             <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
                             <button type="reset" class="btn btn-md btn-warning">RESET</button>
+                            <a href="{{ route('blog.index') }}" class="btn btn-sm btn-secondary">KEMBALI</a>
 
                         </form> 
                     </div>
