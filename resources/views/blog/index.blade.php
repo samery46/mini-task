@@ -1,33 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Data Blogs</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-</head>
-<body style="background: lightgray">
+@extends('layouts.index')
 
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card border-0 shadow rounded">
-                    <div class="card-body">
-                        <a href="{{ route('blog.create') }}" class="btn btn-md btn-success mb-3">TAMBAH BLOG</a>
-                        <table class="table table-bordered">
-                            <thead>
-                              <tr>
-                                <th scope="col">GAMBAR</th>
-                                <th scope="col">JUDUL</th>
-                                <th scope="col">CONTENT</th>
-                                <th scope="col">AKSI</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              @forelse ($blogs as $blog)
-                                <tr>
+@section('Content')
+    
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card border-0 shadow rounded">
+                <div class="card-body ">
+                    <h4 class="font-weight-bold text-center"> Daftar Artikel Blog</h4>
+                     @if (session('status'))
+                        <div class="alert alert-success text-center mt-3">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    {{--  @include('sweetalert::alert') --}}
+
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped" id="mytable">
+                        <thead>
+                          <tr class="text-center">
+                            <th scope="col">No.</th>
+                                <th scope="col">Gambar</th>
+                                <th scope="col">Judul</th>
+                                <th scope="col">Content</th>
+                                <th scope="col">Aksi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                         @forelse ($blogs as $blog)
+                                <tr class="text-center">
+                                    <th scope="row">{{ $blog->id }}</th>
                                     <td class="text-center">
                                         <img src="{{ Storage::url('public/blogs/').$blog->image }}" class="rounded" style="width: 150px">
                                     </td>
@@ -48,31 +51,14 @@
                                       Data Blog belum Tersedia.
                                   </div>
                               @endforelse
-                            </tbody>
-                          </table>  
-                          {{ $blogs->links() }}
-                    </div>
+                        </tbody>
+                      </table>
+                    {{ $blogs->links() }}                      
                 </div>
             </div>
         </div>
     </div>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</div>
 
-    <script>
-        //message with toastr
-        @if(session()->has('success'))
-        
-            toastr.success('{{ session('success') }}', 'BERHASIL!'); 
 
-        @elseif(session()->has('error'))
-
-            toastr.error('{{ session('error') }}', 'GAGAL!'); 
-            
-        @endif
-    </script>
-
-</body>
-</html>
+@endsection

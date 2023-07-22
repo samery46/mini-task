@@ -1,75 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tambah Data Blog</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body style="background: lightgray">
+@extends('layouts.index')
 
-    <div class="container mt-5 mb-5">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card border-0 shadow rounded">
-                    <div class="card-body">
-                        <form action="{{ route('blog.store') }}" method="POST" enctype="multipart/form-data">
-                        
-                            @csrf
-
-                            <div class="form-group">
-                                <label class="font-weight-bold">GAMBAR</label>
-                                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
-                            
-                                <!-- error message untuk title -->
+@section('Content')
+    
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12 col-lg-12">
+            <div class="card border-0 shadow rounded">
+                <div class="card-header text-center">
+                    <strong>Tambah Data Artikel</strong>
+                </div>
+                <div class="card-body ">
+                <form action="{{ route('blog.store') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+            
+                    <div class="form-group">
+                        <label for="image">GAMBAR</label>
+                        <input type="file"
+                                name="image"
+                                value="{{ old('image')}}"
+                                accept="img/*"
+                                class="form-control @error('image') is-invalid @enderror">
                                 @error('image')
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $message }}
-                                    </div>
+                                <div class="text-muted">{{ $message }}</div>
                                 @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label class="font-weight-bold">JUDUL</label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" placeholder="Masukkan Judul Blog">
-                            
-                                <!-- error message untuk title -->
-                                @error('title')
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label class="font-weight-bold">KONTEN</label>
-                                <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Blog">{{ old('content') }}</textarea>
-                            
-                                <!-- error message untuk content -->
-                                @error('content')
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
-                            <button type="reset" class="btn btn-md btn-warning">RESET</button>
-                            <a href="{{ route('blog.index') }}" class="btn btn-sm btn-secondary">KEMBALI</a>
-
-                        </form> 
                     </div>
+                    <div class="form-group">
+                        <label for="title">Judul</label>
+                        <input type="text"
+                                name="title"
+                                value="{{ old('title')}}"
+                                class="form-control @error('title') is-invalid @enderror">
+                                @error('title')
+                                <div class="text-muted">{{ $message }}</div>
+                                @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="content">Konten</label>
+                                <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="8" placeholder="Masukkan Konten Blog">{{ old('content') }}</textarea>
+                                @error('content')
+                                <div class="text-muted">{{ $message }}</div>
+                                @enderror
+                    </div>
+            
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
+                        <button type="reset" class="btn btn-md btn-warning">RESET</button>
+                        <a href="{{ route('blog.index') }}" class="btn btn-sm btn-secondary">KEMBALI</a>                        
+                    </div>
+                </form>
                 </div>
             </div>
+            
         </div>
     </div>
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace( 'content' );
-</script>
-</body>
-</html>
+</div>
+
+@endsection
