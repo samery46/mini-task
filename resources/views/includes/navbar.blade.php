@@ -16,7 +16,7 @@
                 </a>
 
                 <div class="user-menu dropdown-menu">
-                    <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                    <a href="{{ route('logout') }}" class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
                 </div>
             </div>
 

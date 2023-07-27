@@ -11,9 +11,6 @@
                 <li class="">
                 <a href="{{ route('blog.index') }}"> <i class="menu-icon fa fa-list"></i>Artikel</a>
                 </li>
-                <li class="">
-                    <a href="{{ route('blog.create') }}"> <i class="menu-icon fa fa-plus"></i>Create Artikel</a>
-                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>
