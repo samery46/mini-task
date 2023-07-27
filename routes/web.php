@@ -20,10 +20,11 @@ Route::get('/', function () {
 
 
 Route::resource('blog', BlogController::class);
+Route::get('/admin', [App\Http\Controllers\BlogController::class, 'admin'])->name('admin');
 
 Auth::routes(['verify' => true]);
 
-/* Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); */
+Route::get('/home', [App\Http\Controllers\BlogController::class, 'index'])->name('index');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('admin', function () {
