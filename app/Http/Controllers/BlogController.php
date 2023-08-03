@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Auth;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\Facades\DataTables;
 
 class BlogController extends Controller
 {
@@ -23,8 +25,15 @@ class BlogController extends Controller
 
     public function index()
     {
-        $blogs = Blog::latest()->paginate(10);
-        return view('blog.index', compact('blogs'));
+        /* $blogs = Blog::latest()->paginate(10);
+        return view('blog.index', compact('blogs')); */
+        if (request()->ajax()) {
+            $blogs = Blog::query();
+            return DataTables::of($blogs)
+
+                ->make();
+        }
+        return view('blog.index');
     }
 
     public function create()
