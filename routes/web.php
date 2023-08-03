@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return redirect()->route('blog.index');
 });
 
 
 Route::resource('blog', BlogController::class);
-Route::get('/admin', [App\Http\Controllers\BlogController::class, 'admin'])->name('admin');
+Route::get('/admin', [App\Http\Controllers\BlogController::class, 'showAdmin'])->name('showAdmin');
 
 Auth::routes(['verify' => true]);
 

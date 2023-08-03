@@ -8,7 +8,7 @@
             <div class="card border-0 shadow rounded">
                 <div class="card-body ">
                     <h4 class="font-weight-bold text-center"> Daftar Artikel Blog</h4>
-                    <!-- <a href="/blog/create"><button class="btn btn-success">Tambah Artikel</button></a> -->
+                    <a href="/blog/create"><button class="btn btn-success">Tambah Artikel</button></a>
                      @if (session('status'))
                         <div class="alert alert-success text-center mt-3">
                             {{ session('status') }}
@@ -25,7 +25,7 @@
                                 <th scope="col">Gambar</th>
                                 <th scope="col">Judul</th>
                                 <th scope="col">Content</th>
-                                <!-- <th scope="col">Aksi</th> -->
+                                <th scope="col">Aksi</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -40,10 +40,10 @@
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('blog.destroy', $blog->id) }}" method="POST">
                                             <a href="{{ route('blog.show', $blog->id) }}" class="btn btn-sm btn-dark">SHOW</a>
-                                        <!--    <a href="{{ route('blog.edit', $blog->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                            <a href="{{ route('blog.edit', $blog->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">HAPUS</button> -->
+                                            <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
                                         </form>
                                     </td>
                                 </tr>
